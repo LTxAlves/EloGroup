@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<!--
+    @author:    Leonardo Alves
+    @page:      github.com/LTxAlves
+-->
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="form.css">
+
+        <script type="text/javascript" src="form.js"></script>
+
+        <script>
+            function validateForm() {
+                var x = document.forms["myForm"]["fname"].value;
+                if (x == "") {
+                    alert("Name must be filled out");
+                    return false;
+                }
+            }
+        </script>
+
+        <script language="JavaScript" type="text/javascript">
+            function classChange(styleChange,item) {
+                item.className = styleChange;
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <form id="EloGroup" method="POST" action="#" nsubmit="classChange('buttonSubmitHide',submit); return true;">
+            <label for="name">Nome:</label><br>
+            <input type="text" id="name" name="name" required></input><br>
+
+            <label for="tel">Telefone:</label><br>
+            <input type="text" id="phone" name="phone" placeholder="11987654321"></input><br>
+
+            <label for="know">Como nos conheceu?</label><br>
+            <select id="know-us" name="know-us" required>
+                <option value="tv">TV</option>
+                <option value="web">Internet</option>
+                <option value="other">Outros</option>
+            </select><br>
+
+            <label for="socialnetwork">Possui rede social?</label><br>
+            <div>
+                <input type="radio" id="yes-social-net" name="social-net" value="yes-social-net" required>
+                <label for="yes-social-net">Sim</label><br>
+
+                <div class="reveal-if-active">
+                    <input type="checkbox" value="facebook" name="social_networks[]">FaceBook</input><br>
+                    <input type="checkbox" value="linkedin" name="social_networks[]">LinkedIn</input><br>
+                    <input type="checkbox" value="instagram" name="social_networks[]">Instagram</input><br>
+                </div>
+
+                <input type="radio" id="no-social-net" name="social-net" value="no-social-net">
+                <label for="no-social-net">Não</label>
+            </div>
+
+            <div>
+                <input type="submit" name="submit" id="submit" class="buttonSubmit" value="Enviar">
+            </div>
+
+        </form>
+
+    </body>
+</html>
