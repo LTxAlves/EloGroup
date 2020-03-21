@@ -15,7 +15,7 @@
 ## Autor
 
 * **Leonardo Teixeira Alves** - [LTxAlves](https://github.com/LTxAlves "GitHub de Leonardo")
-  * Nomee na plataforma Gupy: Leonardo Alves
+  * Nome na plataforma Gupy: Leonardo Alves
 
 ### Observações
 
