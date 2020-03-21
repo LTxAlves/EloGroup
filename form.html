@@ -9,28 +9,59 @@
     <head>
         <link rel="stylesheet" type="text/css" href="form.css">
 
-        <script type="text/javascript" src="form.js"></script>
+        <script language="JavaScript" type="text/javascript">
+            function classChange(event) {
+                event.preventDefault();
 
-        <script>
-            function validateForm() {
-                var x = document.forms["myForm"]["fname"].value;
-                if (x == "") {
-                    alert("Name must be filled out");
+                var foundError = false;
+
+                var reqCheckboxes = document.getElementById('reveal-if-active')
+                let counterSelected = 0; 
+
+                reqCheckboxes.childNodes.forEach(function(value) {
+                    if (value.checked) { 
+                        counterSelected++;
+                    }
+                })
+
+                if (!counterSelected && document.getElementById('has-social-net').checked) { 
+                    alert("É necessário selecionar ao menos uma rede social");
+                    foundError = true;
+                }
+
+                var fullName = document.getElementById('name').value;
+
+                if (fullName.trim().indexOf(' ') == -1){
+                    alert("Favor inserir nome e sobrenome");
+                    foundError = true;
+                }
+
+                var tel = document.getElementById('phone').value;
+                var isANumber = (/^\d+$/.test(tel));
+
+                if (tel.length > 0 && !isANumber){
+                    alert("Telefone deve conter apenas dígitos");
+                    foundError = true;
+                } else if (tel.length > 0 && (tel.length != 10 && tel.length != 11)){
+                    alert("Telefone deve conter 10 ou 11 dígitos")
+                    foundError = true;
+                }
+
+                if(foundError){
                     return false;
                 }
-            }
-        </script>
 
-        <script language="JavaScript" type="text/javascript">
-            function classChange(styleChange,item) {
-                item.className = styleChange;
+                const elem = document.getElementById('submit');
+                elem.style.display = 'none';
+
+                return true;
             }
         </script>
     </head>
 
     <body>
 
-        <form id="EloGroup" method="POST" action="#" nsubmit="classChange('buttonSubmitHide',submit); return true;">
+        <form id="EloGroup" onsubmit="classChange(event)">
             <label for="name">Nome:</label><br>
             <input type="text" id="name" name="name" required></input><br>
 
@@ -46,13 +77,13 @@
 
             <label for="socialnetwork">Possui rede social?</label><br>
             <div>
-                <input type="radio" id="yes-social-net" name="social-net" value="yes-social-net" required>
+                <input type="radio" id="has-social-net" name="social-net" value="yes-social-net" required>
                 <label for="yes-social-net">Sim</label><br>
 
-                <div class="reveal-if-active">
-                    <input type="checkbox" value="facebook" name="social_networks[]">FaceBook</input><br>
-                    <input type="checkbox" value="linkedin" name="social_networks[]">LinkedIn</input><br>
-                    <input type="checkbox" value="instagram" name="social_networks[]">Instagram</input><br>
+                <div id="reveal-if-active" class="reveal-if-active">
+                    <input class="require-if-active" type="checkbox" value="facebook" name="social_networks[]" data-require-pair="#yes-social-net">FaceBook</input><br>
+                    <input class="require-if-active" type="checkbox" value="linkedin" name="social_networks[]" data-require-pair="#yes-social-net">LinkedIn</input><br>
+                    <input class="require-if-active" type="checkbox" value="instagram" name="social_networks[]" data-require-pair="#yes-social-net">Instagram</input><br>
                 </div>
 
                 <input type="radio" id="no-social-net" name="social-net" value="no-social-net">

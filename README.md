@@ -3,9 +3,8 @@
 ## Hierarquia de arquivos
 
 * Arquivo principal: _form.html_
-* Arquivos secundários:
+* Arquivo secundário:
   * _form.css_
-  * _form.js_
 
 ## Feito com
 
